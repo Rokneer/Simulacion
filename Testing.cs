@@ -25,7 +25,7 @@ public class Testing : MonoBehaviour
         var diffVector = second.sub(first);
         diffVector.multi(range).Draw();
         diffVector.Draw(first);
-        diffVector.lerp(first,2).Draw();
+        diffVector.lerp(second,2).Draw();
 
     }
 }
