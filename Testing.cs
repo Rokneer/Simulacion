@@ -5,18 +5,12 @@ using UnityEngine;
 public class Testing : MonoBehaviour
 {
     [SerializeField]
-    Vector first;
+    Vector first = new Vector(2,3);
     [SerializeField]
-    Vector second;
+    Vector second = new Vector(3, 0);
     [SerializeField]
     [Range(0, 1)]
     public float range = 0.0f;
-
-
-    void Start()
-    {
-        
-    }
 
     void Update()
     {
@@ -25,7 +19,6 @@ public class Testing : MonoBehaviour
         var diffVector = second.sub(first);
         diffVector.multi(range).Draw();
         diffVector.Draw(first);
-        diffVector.lerp(second,2).Draw();
-
+        first.lerp(second, range).Draw();
     }
 }
