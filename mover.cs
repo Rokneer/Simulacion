@@ -18,12 +18,12 @@ public class mover : MonoBehaviour
         if ((position.x > 5) || (position.x < -5))
         {
             velocity.x = velocity.x * -1;
-            velocity.x -= velocity.x * damping;
+            velocity.x *= damping;
         }
         if ((position.y > 5) || (position.y < -5))
         {
             velocity.y = velocity.y * -1;
-            velocity.y -= velocity.y * damping;
+            velocity.y *= damping;
         }
         velocity += acceleration * Time.deltaTime;
         position += velocity * Time.deltaTime;
