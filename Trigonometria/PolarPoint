@@ -1,0 +1,27 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class PolarPoint : MonoBehaviour
+{
+    [Range (0f,1f)]
+    [SerializeField]
+    private float radius;
+    [SerializeField]
+    private float theta, radialSpeed = 1f, angularSpeed = 1f;
+
+    void Update()
+    {
+        theta += angularSpeed * Time.deltaTime;
+        radius += radialSpeed * Time.deltaTime;
+
+        Vector3 cartesian = PolarToCartesian(radius, theta);
+        transform.localPosition = cartesian;
+        Debug.DrawLine(Vector3.zero, cartesian);
+    }
+
+    Vector3 PolarToCartesian(float r, float theta)
+    {
+        return new Vector3(r * Mathf.Cos(theta), r * Mathf.Sin(theta));
+    }
+}
