@@ -9,14 +9,34 @@ public class PolarPoint : MonoBehaviour
     private float radius;
     [SerializeField]
     private float theta, radialSpeed = 1f, angularSpeed = 1f;
+    bool limite_1, limite_2;
 
     void Update()
     {
+        if (radius >= 0 && radius < 5)
+        {
+            if (!limite_1) radius += radialSpeed * Time.deltaTime;
+            else limite_2 = false; radius -= radialSpeed * Time.deltaTime;
+        }
+        else if (radius > 5)
+        {
+            limite_2 = true; radius -= radialSpeed * Time.deltaTime;
+        }
+        else if(radius < 0 && radius > -5)
+        {
+            if (!limite_2) radius -= radialSpeed * Time.deltaTime;
+            else limite_1 = false; radius += radialSpeed * Time.deltaTime;
+        }
+        else if (radius < -5)
+        {
+            limite_2 = true; radius += radialSpeed * Time.deltaTime;
+        }
         theta += angularSpeed * Time.deltaTime;
         radius += radialSpeed * Time.deltaTime;
 
         Vector3 cartesian = PolarToCartesian(radius, theta);
         transform.localPosition = cartesian;
+
         Debug.DrawLine(Vector3.zero, cartesian);
     }
 
