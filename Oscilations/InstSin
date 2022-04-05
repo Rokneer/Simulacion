@@ -1,0 +1,30 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class InstSin : MonoBehaviour
+{
+    [SerializeField]
+    private GameObject prefab;
+    [SerializeField]
+    private int totalInstances = 50;
+    [SerializeField]
+    [Range(0,10)] private float separationFactor = 0.5f;
+    [Range(1f, 10f)] public float amplitude;
+    void Start()
+    {
+        for (int i = 0; i < totalInstances; i++) Instantiate(prefab, transform);
+    }
+
+    void Update()
+    {
+        int i = 0;
+        foreach(Transform child in transform)
+        {
+            float x = i * separationFactor;
+            float y = amplitude * Mathf.Sin(i + Time.time);
+            child.localPosition = new Vector3(x, Mathf.Sin(x));
+            ++i;
+        }
+    }
+}
